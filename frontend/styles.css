@@ -4,7 +4,7 @@
      1. Reset & base
      2. Login page
      3. Dashboard shell (sidebar, main, topbar, cards, recent)
-     4. Referrals list page (tabs, filters, table, sticky)
+     4. Referrals list page (sticky block, tabs, filters, table)
    ============================================================= */
 
 /* ---------- 1. RESET & BASE ---------- */
@@ -235,11 +235,12 @@ body.dashboard-body {
   overflow-y: auto;
 }
 
-/* --- Topbar — sticky --- */
+/* --- Topbar ---
+   No longer sticky on its own — it is sticky as part of
+   .ref-sticky-block on the referrals page (see section 4).
+   On other pages (e.g. dashboard.html) it simply scrolls
+   normally with the rest of the main content. */
 .dashboard-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
   background: #ffffff;
   display: flex;
   align-items: center;
@@ -501,11 +502,24 @@ body.dashboard-body {
 
 /* ---------- 4. REFERRALS LIST PAGE ---------- */
 
-/* Tabs — sticky under topbar */
-.ref-tabs {
+/*
+  STICKY BLOCK — replaces separate sticky offsets on each section.
+  Topbar + tabs + filter bar + table head all live inside this one
+  wrapper in normal document order. Because the wrapper itself is
+  sticky at top: 0, everything inside it naturally stacks without
+  any section needing its own hardcoded "top" pixel value. If any
+  section's height changes later (e.g. filters wrap to two lines
+  on a small screen), nothing here needs to be touched.
+*/
+.ref-sticky-block {
   position: sticky;
-  top: 89px;                    /* height of the sticky topbar */
-  z-index: 15;
+  top: 0;
+  z-index: 20;
+  background: #ffffff;
+}
+
+/* Tabs */
+.ref-tabs {
   background: #ffffff;
   display: flex;
   gap: 6px;
@@ -535,11 +549,8 @@ body.dashboard-body {
   border-bottom-color: #1e5fa5;
 }
 
-/* Filter bar — sticky under tabs */
+/* Filter bar */
 .ref-filterbar {
-  position: sticky;
-  top: 140px;
-  z-index: 14;
   background: #ffffff;
   display: flex;
   align-items: center;
@@ -584,11 +595,8 @@ body.dashboard-body {
   background: #17497f;
 }
 
-/* Table head — sticky under filterbar */
+/* Table head */
 .ref-table-head {
-  position: sticky;
-  top: 203px;
-  z-index: 13;
   background: #ffffff;
   display: grid;
   grid-template-columns: 160px 130px 90px 120px 150px 120px 70px;
@@ -601,7 +609,8 @@ body.dashboard-body {
   padding: 10px 20px 8px;
 }
 
-/* Rows */
+/* Rows — these live OUTSIDE .ref-sticky-block, so they scroll
+   underneath it inside .dashboard-main */
 .ref-row {
   display: grid;
   grid-template-columns: 160px 130px 90px 120px 150px 120px 70px;

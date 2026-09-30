@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HudumaLink — Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dashboard-body">
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-brand">
+        <span class="dashboard-logo-dot"></span>
+        <span>HudumaLink</span>
+      </div>
+
+      <nav class="dashboard-nav">
+        <a href="dashboard.html" class="dashboard-nav-item active">Dashboard</a>
+        <a href="referrals.html" class="dashboard-nav-item">Referrals</a>
+        <a href="referral-new.html" class="dashboard-nav-item">New Referral</a>
+        <a href="#" class="dashboard-nav-item">Partners / NGOs</a>
+        <a href="#" class="dashboard-nav-item">Reports</a>
+        <a href="#" class="dashboard-nav-item">Settings</a>
+      </nav>
+
+      <div class="dashboard-user">
+        <span class="dashboard-avatar">G</span>
+        <div>
+          <p class="dashboard-user-name">Grace A.</p>
+          <p class="dashboard-user-role">OPM · Case worker</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="dashboard-topbar-left">
+          <h1>Referrals</h1>
+          <p class="dashboard-subtitle">OPM · Kyangwali</p>
+        </div>
+
+        <div class="dashboard-topbar-right">
+          <input
+            type="text"
+            class="dashboard-search"
+            placeholder="Search referrals, names, case ID..."
+          />
+          <button class="dashboard-filter">Filter: All ▾</button>
+          <button class="dashboard-bell">
+            🔔<span class="dashboard-badge">3</span>
+          </button>
+          <span class="dashboard-avatar small">G</span>
+        </div>
+      </header>
+
+      <!-- 4 STAT CARDS — MATCHES SRS 15.2 -->
+      <section class="dashboard-stats">
+        <div class="dashboard-stat-card total">
+          <p class="dashboard-stat-label">Total referrals</p>
+          <p class="dashboard-stat-number">245</p>
+        </div>
+        <div class="dashboard-stat-card pending">
+          <p class="dashboard-stat-label">Pending</p>
+          <p class="dashboard-stat-number">32</p>
+        </div>
+        <div class="dashboard-stat-card inprogress">
+          <p class="dashboard-stat-label">In progress</p>
+          <p class="dashboard-stat-number">67</p>
+        </div>
+        <div class="dashboard-stat-card closed">
+          <p class="dashboard-stat-label">Closed</p>
+          <p class="dashboard-stat-number">146</p>
+        </div>
+      </section>
+
+      <!-- RECENT REFERRALS — MATCHES SRS 15.2 TABLE -->
+      <section class="dashboard-cases">
+        <h2>Recent referrals</h2>
+
+        <div class="dashboard-case-head">
+          <span>REF ID</span>
+          <span>Status</span>
+          <span>Date</span>
+          <span>Organization</span>
+        </div>
+
+        <div class="dashboard-case-card">
+          <span class="dashboard-case-id">REF-001</span>
+          <span class="dashboard-status inprogress">In Progress</span>
+          <span class="dashboard-case-date">28/09</span>
+          <span class="dashboard-case-org">Organization B</span>
+        </div>
+
+        <div class="dashboard-case-card">
+          <span class="dashboard-case-id">REF-002</span>
+          <span class="dashboard-status received">Received</span>
+          <span class="dashboard-case-date">28/09</span>
+          <span class="dashboard-case-org">Organization C</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

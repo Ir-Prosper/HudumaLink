@@ -34,83 +34,96 @@
 
   <main class="dashboard-main">
 
-    <header class="dashboard-topbar">
-      <div class="dashboard-topbar-left">
-        <h1>Referrals</h1>
-        <p class="dashboard-subtitle">OPM · Kyangwali</p>
+    <!--
+      STICKY BLOCK
+      Everything the user should always see while scrolling the
+      referral list — topbar, tabs, filters, table header — lives
+      inside ONE sticky wrapper. Because they stack naturally on
+      top of each other in normal document order, none of them
+      need their own hardcoded "top" offset. Only #ref-table-body
+      (outside this wrapper, below) actually scrolls underneath it.
+    -->
+    <div class="ref-sticky-block">
+
+      <header class="dashboard-topbar">
+        <div class="dashboard-topbar-left">
+          <h1>Referrals</h1>
+          <p class="dashboard-subtitle">OPM · Kyangwali</p>
+        </div>
+
+        <div class="dashboard-topbar-right">
+          <input
+            type="text"
+            id="ref-search"
+            class="dashboard-search"
+            placeholder="Search by referral ID..."
+          />
+          <button class="dashboard-bell" aria-label="Notifications">
+            🔔<span class="dashboard-badge">3</span>
+          </button>
+          <span class="dashboard-avatar small">G</span>
+        </div>
+      </header>
+
+      <!-- TABS — per SRS §65 -->
+      <nav class="ref-tabs" id="ref-tabs">
+        <button class="ref-tab active" data-tab="all">All</button>
+        <button class="ref-tab" data-tab="incoming">Incoming</button>
+        <button class="ref-tab" data-tab="outgoing">Outgoing</button>
+        <button class="ref-tab" data-tab="closed">Closed</button>
+      </nav>
+
+      <!-- FILTER BAR — per SRS §16 -->
+      <section class="ref-filterbar">
+        <select class="ref-filter" id="filter-status">
+          <option value="">All statuses</option>
+          <option value="DRAFT">Draft</option>
+          <option value="SUBMITTED">Submitted</option>
+          <option value="RECEIVED">Received</option>
+          <option value="ACCEPTED">Accepted</option>
+          <option value="REJECTED">Rejected</option>
+          <option value="IN_PROGRESS">In Progress</option>
+          <option value="ONWARD_REFERRED">Onward Referred</option>
+          <option value="RESOLVED">Resolved</option>
+          <option value="CLOSED">Closed</option>
+          <option value="CANCELLED">Cancelled</option>
+        </select>
+
+        <select class="ref-filter" id="filter-priority">
+          <option value="">All priorities</option>
+          <option value="LOW">Low</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="HIGH">High</option>
+          <option value="URGENT">Urgent</option>
+        </select>
+
+        <select class="ref-filter" id="filter-category">
+          <option value="">All categories</option>
+          <option value="PROTECTION">Protection</option>
+          <option value="HEALTH">Health</option>
+          <option value="EDUCATION">Education</option>
+          <option value="LIVELIHOOD">Livelihood</option>
+          <option value="SHELTER">Shelter</option>
+          <option value="OTHER">Other</option>
+        </select>
+
+        <a href="referral-new.html" class="ref-new-btn">+ New Referral</a>
+      </section>
+
+      <!-- TABLE HEADER -->
+      <div class="ref-table-head">
+        <span>REF ID</span>
+        <span>STATUS</span>
+        <span>PRIORITY</span>
+        <span>CATEGORY</span>
+        <span>RECEIVING ORG</span>
+        <span>ASSIGNED</span>
+        <span>DATE</span>
       </div>
 
-      <div class="dashboard-topbar-right">
-        <input
-          type="text"
-          id="ref-search"
-          class="dashboard-search"
-          placeholder="Search by referral ID..."
-        />
-        <button class="dashboard-bell" aria-label="Notifications">
-          🔔<span class="dashboard-badge">3</span>
-        </button>
-        <span class="dashboard-avatar small">G</span>
-      </div>
-    </header>
+    </div><!-- /.ref-sticky-block -->
 
-    <!-- TABS — per SRS §65 -->
-    <nav class="ref-tabs" id="ref-tabs">
-      <button class="ref-tab active" data-tab="all">All</button>
-      <button class="ref-tab" data-tab="incoming">Incoming</button>
-      <button class="ref-tab" data-tab="outgoing">Outgoing</button>
-      <button class="ref-tab" data-tab="closed">Closed</button>
-    </nav>
-
-    <!-- FILTER BAR — per SRS §16 -->
-    <section class="ref-filterbar">
-      <select class="ref-filter" id="filter-status">
-        <option value="">All statuses</option>
-        <option value="DRAFT">Draft</option>
-        <option value="SUBMITTED">Submitted</option>
-        <option value="RECEIVED">Received</option>
-        <option value="ACCEPTED">Accepted</option>
-        <option value="REJECTED">Rejected</option>
-        <option value="IN_PROGRESS">In Progress</option>
-        <option value="ONWARD_REFERRED">Onward Referred</option>
-        <option value="RESOLVED">Resolved</option>
-        <option value="CLOSED">Closed</option>
-        <option value="CANCELLED">Cancelled</option>
-      </select>
-
-      <select class="ref-filter" id="filter-priority">
-        <option value="">All priorities</option>
-        <option value="LOW">Low</option>
-        <option value="MEDIUM">Medium</option>
-        <option value="HIGH">High</option>
-        <option value="URGENT">Urgent</option>
-      </select>
-
-      <select class="ref-filter" id="filter-category">
-        <option value="">All categories</option>
-        <option value="PROTECTION">Protection</option>
-        <option value="HEALTH">Health</option>
-        <option value="EDUCATION">Education</option>
-        <option value="LIVELIHOOD">Livelihood</option>
-        <option value="SHELTER">Shelter</option>
-        <option value="OTHER">Other</option>
-      </select>
-
-      <a href="referral-new.html" class="ref-new-btn">+ New Referral</a>
-    </section>
-
-    <!-- TABLE HEADER -->
-    <div class="ref-table-head">
-      <span>REF ID</span>
-      <span>STATUS</span>
-      <span>PRIORITY</span>
-      <span>CATEGORY</span>
-      <span>RECEIVING ORG</span>
-      <span>ASSIGNED</span>
-      <span>DATE</span>
-    </div>
-
-    <!-- ROWS RENDERED BY JS -->
+    <!-- ROWS RENDERED BY JS — this is the part that actually scrolls -->
     <div id="ref-table-body"></div>
 
     <!-- EMPTY STATE -->
