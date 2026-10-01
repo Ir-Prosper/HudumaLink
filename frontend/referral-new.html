@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HudumaLink — New Referral</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dashboard-body">
+
+  <aside class="dashboard-sidebar">
+    <div class="dashboard-brand">
+      <span class="dashboard-logo-dot"></span>
+      <span>HudumaLink</span>
+    </div>
+
+    <nav class="dashboard-nav">
+      <a href="dashboard.html" class="dashboard-nav-item">Dashboard</a>
+      <a href="referrals.html" class="dashboard-nav-item">Referrals</a>
+      <a href="referral-new.html" class="dashboard-nav-item active">New Referral</a>
+      <a href="#" class="dashboard-nav-item">Partners / NGOs</a>
+      <a href="#" class="dashboard-nav-item">Reports</a>
+      <a href="#" class="dashboard-nav-item">Settings</a>
+    </nav>
+
+    <div class="dashboard-user">
+      <span class="dashboard-avatar">G</span>
+      <div>
+        <p class="dashboard-user-name">Grace A.</p>
+        <p class="dashboard-user-role">OPM · Case worker</p>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+
+    <div class="ref-sticky-block">
+      <header class="dashboard-topbar">
+        <div class="dashboard-topbar-left">
+          <h1>New Referral</h1>
+          <p class="dashboard-subtitle">Create and submit a new case referral</p>
+        </div>
+
+        <div class="dashboard-topbar-right">
+          <button class="dashboard-bell" aria-label="Notifications">
+            🔔<span class="dashboard-badge">3</span>
+          </button>
+          <span class="dashboard-avatar small">G</span>
+        </div>
+      </header>
+    </div>
+
+    <!-- Success / error message -->
+    <div id="form-message" class="form-message" hidden></div>
+
+    <form id="referral-form" class="form-card" novalidate>
+
+      <!-- ============================================================= -->
+      <!-- SECTION 1 — REFERRAL INFORMATION                              -->
+      <!-- ============================================================= -->
+      <h2 class="form-section-title">Referral Information</h2>
+
+      <div class="form-grid">
+
+        <div class="form-field">
+          <label>Referring organization</label>
+          <input type="text" id="referringOrg" readonly />
+        </div>
+
+        <div class="form-field">
+          <label>Referring staff</label>
+          <input type="text" id="referringStaff" readonly />
+        </div>
+
+        <div class="form-field">
+          <label for="receivingOrg">Receiving organization <span class="req">*</span></label>
+          <select id="receivingOrg" required>
+            <option value="">— Select organization —</option>
+            <!-- populated by JS -->
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="receivingStaff">Receiving staff</label>
+          <select id="receivingStaff" disabled>
+            <option value="">— Select organization first —</option>
+          </select>
+          <p class="form-hint">Optional. Leave blank to send to the organization's queue.</p>
+        </div>
+
+        <div class="form-field">
+          <label for="category">Category <span class="req">*</span></label>
+          <select id="category" required>
+            <option value="">— Select category —</option>
+            <option value="PROTECTION">Protection</option>
+            <option value="HEALTH">Health</option>
+            <option value="EDUCATION">Education</option>
+            <option value="LIVELIHOOD">Livelihood</option>
+            <option value="SHELTER">Shelter</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="priority">Priority <span class="req">*</span></label>
+          <select id="priority" required>
+            <option value="">— Select priority —</option>
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+            <option value="URGENT">Urgent</option>
+          </select>
+        </div>
+
+        <div class="form-field form-full">
+          <label for="reason">Reason for referral <span class="req">*</span></label>
+          <textarea id="reason" rows="2" required
+            placeholder="Short reason (one sentence)"></textarea>
+        </div>
+
+        <div class="form-field form-full">
+          <label for="description">Description of requested assistance <span class="req">*</span></label>
+          <textarea id="description" rows="4" required
+            placeholder="Describe what service or support is needed"></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="consentStatus">Consent status <span class="req">*</span></label>
+          <select id="consentStatus" required>
+            <option value="">— Select —</option>
+            <option value="OBTAINED">Obtained</option>
+            <option value="NOT_OBTAINED">Not obtained</option>
+            <option value="NOT_APPLICABLE">Not applicable</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="preferredCommunication">Preferred communication</label>
+          <select id="preferredCommunication">
+            <option value="">— Select —</option>
+            <option value="EMAIL">Email</option>
+            <option value="PHONE">Phone</option>
+            <option value="IN_PERSON">In person</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- ============================================================= -->
+      <!-- SECTION 2 — BENEFICIARY INFORMATION                            -->
+      <!-- ============================================================= -->
+      <h2 class="form-section-title">Beneficiary Information</h2>
+      <p class="form-section-hint">
+        Data minimization: collect only what's necessary to deliver the service.
+      </p>
+
+      <div class="form-grid">
+
+        <div class="form-field">
+          <label for="beneficiaryRef">Beneficiary reference <span class="req">*</span></label>
+          <input type="text" id="beneficiaryRef" required placeholder="e.g. BEN-000123" />
+        </div>
+
+        <div class="form-field">
+          <label for="ageGroup">Age group</label>
+          <select id="ageGroup">
+            <option value="">— Select —</option>
+            <option value="CHILD">Child</option>
+            <option value="ADULT">Adult</option>
+            <option value="ELDERLY">Elderly</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="gender">Gender <span class="req">*</span></label>
+          <select id="gender" required>
+            <option value="">— Select —</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="OTHER">Other</option>
+            <option value="PREFER_NOT_SAY">Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="zone">Zone <span class="req">*</span></label>
+          <input type="text" id="zone" required placeholder="e.g. Zone 3" />
+        </div>
+
+        <div class="form-field">
+          <label for="block">Block <span class="req">*</span></label>
+          <input type="text" id="block" required placeholder="e.g. Block B" />
+        </div>
+
+      </div>
+
+      <!-- ============================================================= -->
+      <!-- ACTIONS                                                         -->
+      <!-- ============================================================= -->
+      <div class="form-actions">
+        <a href="referrals.html" class="btn btn-ghost">Cancel</a>
+        <button type="button" id="btn-draft" class="btn btn-secondary">Save as Draft</button>
+        <button type="submit" id="btn-submit" class="btn btn-primary">Submit Referral</button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <script src="mock-organizations.js"></script>
+  <script src="mock-referrals.js"></script>
+  <script src="referral-new.js"></script>
+</body>
+</html>
