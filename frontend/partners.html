@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HudumaLink — Partners / NGOs</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dashboard-body">
+
+  <aside class="dashboard-sidebar">
+    <div class="dashboard-brand">
+      <span class="dashboard-logo-dot"></span>
+      <span>HudumaLink</span>
+    </div>
+
+    <nav class="dashboard-nav">
+      <a href="dashboard.html" class="dashboard-nav-item">Dashboard</a>
+      <a href="referrals.html" class="dashboard-nav-item">Referrals</a>
+      <a href="referral-new.html" class="dashboard-nav-item">New Referral</a>
+      <a href="partners.html" class="dashboard-nav-item active">Partners / NGOs</a>
+      <a href="#" class="dashboard-nav-item">Reports</a>
+      <a href="#" class="dashboard-nav-item">Settings</a>
+    </nav>
+
+    <div class="dashboard-user">
+      <span class="dashboard-avatar">G</span>
+      <div>
+        <p class="dashboard-user-name">Grace A.</p>
+        <p class="dashboard-user-role">OPM · Case worker</p>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+
+    <div class="ref-sticky-block">
+      <header class="dashboard-topbar">
+        <div class="dashboard-topbar-left">
+          <h1>Partners / NGOs</h1>
+          <p class="dashboard-subtitle">Participating organizations in Kyangwali</p>
+        </div>
+
+        <div class="dashboard-topbar-right">
+          <input
+            type="text"
+            id="partner-search"
+            class="dashboard-search"
+            placeholder="Search organization..."
+          />
+          <button class="dashboard-bell" aria-label="Notifications">
+            🔔<span class="dashboard-badge">3</span>
+          </button>
+          <span class="dashboard-avatar small">G</span>
+        </div>
+      </header>
+    </div>
+
+    <!-- Summary line -->
+    <p class="partners-summary" id="partners-summary">—</p>
+
+    <!-- Card grid — rendered by JS -->
+    <section id="partners-grid" class="partners-grid"></section>
+
+    <!-- Empty state -->
+    <p id="partners-empty" class="ref-empty" hidden>No organizations match your search.</p>
+
+  </main>
+
+  <!-- ================= SIDE PANEL ================= -->
+  <!-- Slides in from the right when a partner card is clicked -->
+  <div id="partner-panel-backdrop" class="partner-panel-backdrop" hidden></div>
+
+  <aside id="partner-panel" class="partner-panel" aria-hidden="true">
+    <header class="partner-panel-head">
+      <div>
+        <p class="partner-panel-kicker">Organization</p>
+        <h2 id="panel-org-name">—</h2>
+        <p id="panel-org-fullname" class="partner-panel-sub">—</p>
+      </div>
+      <button id="panel-close" class="partner-panel-close" aria-label="Close">✕</button>
+    </header>
+
+    <div class="partner-panel-body">
+      <h3 class="partner-panel-title">Staff members</h3>
+      <ul id="panel-staff" class="partner-staff-list"></ul>
+
+      <h3 class="partner-panel-title">Details</h3>
+      <dl class="partner-detail-list">
+        <dt>Organization ID</dt><dd id="panel-org-id">—</dd>
+        <dt>Code</dt><dd id="panel-org-code">—</dd>
+        <dt>Staff count</dt><dd id="panel-staff-count">—</dd>
+      </dl>
+    </div>
+  </aside>
+
+  <script src="toast.js"></script>
+  <script src="mock-organizations.js"></script>
+  <script src="partners.js"></script>
+</body>
+</html>

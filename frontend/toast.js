@@ -33,3 +33,16 @@ window.showToast = function (message, kind) {
     setTimeout(function () { toast.remove(); }, 400);
   }, 3500);
 };
+
+// Demo utility: Shift + Alt + R wipes localStorage and reloads.
+// Useful during a live demo to reset to the seed data.
+document.addEventListener("keydown", function (e) {
+  if (e.shiftKey && e.altKey && (e.key === "R" || e.key === "r")) {
+    if (typeof window.resetReferralData === "function") {
+      window.resetReferralData();
+    } else {
+      localStorage.removeItem("hudumalink_referrals");
+      location.reload();
+    }
+  }
+});
