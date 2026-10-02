@@ -22,7 +22,8 @@
    10. Reports page
    11. Modals & inline panels
    12. Toast notifications
-   13. Responsive adjustments (all media queries live here)
+   13. SETTINGS PAGE
+   14. Responsive adjustments (all media queries live here)
 
    ============================================================= */
 
@@ -1505,8 +1506,235 @@ a.dashboard-case-card:hover {
 .toast-success { background: #1a7f37; }
 .toast-error   { background: #c82828; }
 
+
 /* =============================================================
-   13. RESPONSIVE ADJUSTMENTS
+   13. SETTINGS PAGE
+   ============================================================= */
+
+.settings-card {
+  background: #ffffff;
+  border: 1px solid #d6dae0;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 16px 0;
+  max-width: 1100px;
+}
+
+.settings-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #172a42;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eceff3;
+}
+
+/* --- Profile --- */
+.settings-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.settings-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1e5fa5;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.settings-profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #172a42;
+}
+
+.settings-profile-email {
+  font-size: 13px;
+  color: #6e7680;
+  margin-top: 2px;
+}
+
+.settings-detail-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 10px 20px;
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.settings-detail-grid dt {
+  font-size: 12px;
+  color: #6e7680;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding-top: 3px;
+}
+
+.settings-detail-grid dd {
+  color: #172a42;
+  font-weight: bold;
+  margin: 0;
+}
+
+.settings-note {
+  font-size: 12px;
+  color: #6e7680;
+  font-style: italic;
+  padding-top: 12px;
+  border-top: 1px solid #eceff3;
+}
+
+/* --- Change Password --- */
+.settings-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+.settings-form .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-form .form-field input {
+  padding: 10px 12px;
+  border: 1px solid #d6dae0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #172a42;
+  outline: none;
+}
+
+.settings-form .form-field input:focus {
+  border-color: #1e5fa5;
+  box-shadow: 0 0 0 3px rgba(30, 95, 165, 0.12);
+}
+
+/* Make the confirm field span both columns */
+.settings-form .form-field:nth-child(2) {
+  grid-column: 1 / -1;
+}
+
+.settings-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+/* --- Users Management --- */
+.settings-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.settings-search {
+  flex: 1;
+  min-width: 200px;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #d6dae0;
+  background: #f2f4f7;
+  font-size: 13px;
+  outline: none;
+}
+
+.settings-search:focus {
+  border-color: #1e5fa5;
+  background: #ffffff;
+}
+
+.settings-user-count {
+  font-size: 12px;
+  color: #6e7680;
+  margin-left: auto;
+}
+
+/* Header + row */
+.settings-user-head,
+.settings-user-row {
+  display: grid;
+  grid-template-columns: 180px 220px 120px 130px 100px 110px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+}
+
+.settings-user-head {
+  font-size: 11px;
+  color: #6e7680;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-top: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eceff3;
+}
+
+.settings-user-row {
+  border-bottom: 1px solid #f2f4f7;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+.settings-user-row:hover {
+  background: #f7f9fc;
+}
+
+.settings-user-name {
+  font-weight: bold;
+  color: #172a42;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-user-email,
+.settings-user-role,
+.settings-user-org {
+  color: #6e7680;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-user-action {
+  height: 30px;
+  padding: 0 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  color: #1e5fa5;
+  background: #ffffff;
+  border: 1px solid #d6dae0;
+}
+
+.settings-user-action:hover {
+  background: #dfecfa;
+  border-color: #1e5fa5;
+}
+
+.settings-org-btn {
+  margin-top: 8px;
+}
+
+/* =============================================================
+   14. RESPONSIVE ADJUSTMENTS
    All media queries live here, in one place.
    ============================================================= */
 
@@ -1573,5 +1801,29 @@ a.dashboard-case-card:hover {
 @media (max-width: 600px) {
   .report-summary {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Settings: stack the password form fields on small screens */
+@media (max-width: 720px) {
+  .settings-form {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-form .form-field:nth-child(2) {
+    grid-column: auto;
+  }
+
+  /* Users table: collapse to a readable two-column layout */
+  .settings-user-head,
+  .settings-user-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .settings-user-head span:nth-child(4),
+  .settings-user-head span:nth-child(5),
+  .settings-user-org,
+  .settings-user-row .dashboard-status {
+    display: none;
   }
 }

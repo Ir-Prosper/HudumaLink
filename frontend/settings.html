@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HudumaLink — Settings</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dashboard-body">
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-brand">
+        <span class="dashboard-logo-dot"></span>
+        <span>HudumaLink</span>
+      </div>
+
+      <nav class="dashboard-nav">
+        <a href="dashboard.html" class="dashboard-nav-item">Dashboard</a>
+        <a href="referrals.html" class="dashboard-nav-item">Referrals</a>
+        <a href="referral-new.html" class="dashboard-nav-item">New Referral</a>
+        <a href="partners.html" class="dashboard-nav-item">Partners / NGOs</a>
+        <a href="reports.html" class="dashboard-nav-item">Reports</a>
+        <a href="settings.html" class="dashboard-nav-item active">Settings</a>
+      </nav>
+
+      <div class="dashboard-user">
+        <span class="dashboard-avatar">G</span>
+        <div>
+          <p class="dashboard-user-name">Grace A.</p>
+          <p class="dashboard-user-role">OPM · Case worker</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="ref-sticky-block">
+        <header class="dashboard-topbar">
+          <div class="dashboard-topbar-left">
+            <h1>Settings</h1>
+            <p class="dashboard-subtitle">Profile, password, and user management</p>
+          </div>
+
+          <div class="dashboard-topbar-right">
+            <button class="dashboard-bell" aria-label="Notifications">
+              🔔<span class="dashboard-badge">3</span>
+            </button>
+            <span class="dashboard-avatar small">G</span>
+          </div>
+        </header>
+      </div>
+
+      <!-- ============================================================= -->
+      <!-- MY PROFILE                                                     -->
+      <!-- ============================================================= -->
+      <section class="settings-card">
+        <h2 class="settings-title">My Profile</h2>
+
+        <div class="settings-profile">
+          <span class="settings-avatar" id="profile-avatar">GA</span>
+          <div class="settings-profile-info">
+            <p class="settings-profile-name" id="profile-name">—</p>
+            <p class="settings-profile-email" id="profile-email">—</p>
+          </div>
+        </div>
+
+        <dl class="settings-detail-grid">
+          <dt>Role</dt>          <dd id="profile-role">—</dd>
+          <dt>Organization</dt>  <dd id="profile-org">—</dd>
+          <dt>Organization ID</dt><dd id="profile-org-id">—</dd>
+          <dt>User ID</dt>       <dd id="profile-id">—</dd>
+        </dl>
+
+        <p class="settings-note">
+          Profile editing is disabled in the MVP. Contact your organization
+          administrator to update your details.
+        </p>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- CHANGE PASSWORD                                                -->
+      <!-- ============================================================= -->
+      <section class="settings-card">
+        <h2 class="settings-title">Change Password</h2>
+
+        <form id="password-form" class="settings-form" novalidate>
+          <div class="form-field">
+            <label for="current-password">Current password <span class="req">*</span></label>
+            <input type="password" id="current-password" required placeholder="••••••••" />
+          </div>
+
+          <div class="form-field">
+            <label for="new-password">New password <span class="req">*</span></label>
+            <input type="password" id="new-password" required placeholder="At least 8 characters" />
+            <p class="form-hint">
+              Must be at least 8 characters and contain a number.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="confirm-password">Confirm new password <span class="req">*</span></label>
+            <input type="password" id="confirm-password" required placeholder="Repeat new password" />
+          </div>
+
+          <div class="settings-form-actions">
+            <button type="button" class="btn btn-ghost" id="password-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Change Password</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- USERS MANAGEMENT                                               -->
+      <!-- ============================================================= -->
+      <section class="settings-card">
+        <h2 class="settings-title">Users Management</h2>
+
+        <div class="settings-toolbar">
+          <input
+            type="text"
+            id="user-search"
+            class="settings-search"
+            placeholder="Search by name, email, or organization..."
+          />
+          <select id="user-role-filter" class="ref-filter">
+            <option value="">All roles</option>
+            <option value="CASE_WORKER">Case Worker</option>
+            <option value="SUPERVISOR">Supervisor</option>
+            <option value="ORG_ADMIN">Org Admin</option>
+          </select>
+          <select id="user-org-filter" class="ref-filter">
+            <option value="">All organizations</option>
+          </select>
+          <span class="settings-user-count" id="user-count">—</span>
+        </div>
+
+        <div class="settings-user-head">
+          <span>NAME</span>
+          <span>EMAIL</span>
+          <span>ROLE</span>
+          <span>ORGANIZATION</span>
+          <span>STATUS</span>
+          <span>ACTION</span>
+        </div>
+
+        <div id="user-table-body"></div>
+
+        <p id="user-empty" class="ref-empty" hidden>No users match your filters.</p>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- ORGANIZATION INFO                                              -->
+      <!-- ============================================================= -->
+      <section class="settings-card">
+        <h2 class="settings-title">Organization Information</h2>
+
+        <dl class="settings-detail-grid">
+          <dt>Name</dt>          <dd id="org-name">—</dd>
+          <dt>Full name</dt>     <dd id="org-fullname">—</dd>
+          <dt>Staff members</dt> <dd id="org-staff-count">—</dd>
+        </dl>
+
+        <a href="partners.html" class="btn btn-secondary settings-org-btn">
+          View all partners / NGOs →
+        </a>
+      </section>
+    </main>
+
+    <script src="toast.js"></script>
+    <script src="mock-organizations.js"></script>
+    <script src="mock-referrals.js"></script>
+    <script src="settings.js"></script>
+  </body>
+</html>
