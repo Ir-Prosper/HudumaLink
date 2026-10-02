@@ -5,6 +5,9 @@
      2. Login page
      3. Dashboard shell (sidebar, main, topbar, cards, recent)
      4. Referrals list page (sticky block, tabs, filters, table)
+     5. New Referral form page
+     6. Referral details page
+     7. TOAST NOTIFICATIONS
    ============================================================= */
 
 /* ---------- 1. RESET & BASE ---------- */
@@ -124,7 +127,6 @@ body {
 
 /* ---------- 3. DASHBOARD SHELL ---------- */
 
-/* Page-level: no body scroll — main scrolls internally */
 body.dashboard-body {
   height: 100vh;
   overflow: hidden;
@@ -132,7 +134,6 @@ body.dashboard-body {
   background: #ffffff;
 }
 
-/* --- Sidebar --- */
 .dashboard-sidebar {
   width: 240px;
   background: #132136;
@@ -226,7 +227,6 @@ body.dashboard-body {
   font-size: 14px;
 }
 
-/* --- Main — the scroll container --- */
 .dashboard-main {
   flex: 1;
   padding: 0 40px 40px;
@@ -235,11 +235,6 @@ body.dashboard-body {
   overflow-y: auto;
 }
 
-/* --- Topbar ---
-   No longer sticky on its own — it is sticky as part of
-   .ref-sticky-block on the referrals page (see section 4).
-   On other pages (e.g. dashboard.html) it simply scrolls
-   normally with the rest of the main content. */
 .dashboard-topbar {
   background: #ffffff;
   display: flex;
@@ -275,7 +270,6 @@ body.dashboard-body {
   margin-left: auto;
 }
 
-/* Search */
 .dashboard-search {
   width: 320px;
   height: 38px;
@@ -297,7 +291,6 @@ body.dashboard-body {
   background: #ffffff;
 }
 
-/* Filter button */
 .dashboard-filter {
   height: 38px;
   padding: 0 16px;
@@ -316,7 +309,6 @@ body.dashboard-body {
   background: #f2f4f7;
 }
 
-/* Bell */
 .dashboard-bell {
   position: relative;
   width: 38px;
@@ -353,7 +345,6 @@ body.dashboard-body {
   border: 2px solid #ffffff;
 }
 
-/* --- Dashboard: stat cards (2x2) --- */
 .dashboard-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -397,7 +388,6 @@ body.dashboard-body {
   margin-top: 4px;
 }
 
-/* --- Dashboard: recent referrals --- */
 .dashboard-cases h2 {
   font-size: 16px;
   margin-bottom: 12px;
@@ -439,7 +429,6 @@ body.dashboard-body {
   font-size: 13px;
 }
 
-/* --- Status pills (shared by dashboard + referrals) --- */
 .dashboard-status {
   font-size: 12px;
   font-weight: bold;
@@ -502,25 +491,14 @@ body.dashboard-body {
 
 /* ---------- 4. REFERRALS LIST PAGE ---------- */
 
-/*
-  STICKY BLOCK — replaces separate sticky offsets on each section.
-  Topbar + tabs + filter bar + table head all live inside this one
-  wrapper in normal document order. Because the wrapper itself is
-  sticky at top: 0, everything inside it naturally stacks without
-  any section needing its own hardcoded "top" pixel value. If any
-  section's height changes later (e.g. filters wrap to two lines
-  on a small screen), nothing here needs to be touched.
-*/
 .ref-sticky-block {
   position: sticky;
   top: 0;
   z-index: 20;
   background: #ffffff;
   box-shadow: 0 1px 0 #d6dae0;
-
 }
 
-/* Tabs */
 .ref-tabs {
   background: #ffffff;
   display: flex;
@@ -551,7 +529,6 @@ body.dashboard-body {
   border-bottom-color: #1e5fa5;
 }
 
-/* Filter bar */
 .ref-filterbar {
   background: #ffffff;
   display: flex;
@@ -597,7 +574,6 @@ body.dashboard-body {
   background: #17497f;
 }
 
-/* Table head */
 .ref-table-head {
   background: #ffffff;
   display: grid;
@@ -611,8 +587,6 @@ body.dashboard-body {
   padding: 10px 20px 8px;
 }
 
-/* Rows — these live OUTSIDE .ref-sticky-block, so they scroll
-   underneath it inside .dashboard-main */
 .ref-row {
   display: grid;
   grid-template-columns: 160px 130px 90px 120px 150px 120px 70px;
@@ -646,7 +620,6 @@ body.dashboard-body {
   font-size: 13px;
 }
 
-/* Priority pill */
 .ref-priority {
   font-size: 11px;
   font-weight: bold;
@@ -676,7 +649,6 @@ body.dashboard-body {
   color: #c82828;
 }
 
-/* Empty state */
 .ref-empty {
   text-align: center;
   color: #6e7680;
@@ -693,7 +665,6 @@ body.dashboard-body {
   padding: 8px 0 40px;
 }
 
-/* Section titles */
 .form-section-title {
   font-size: 16px;
   color: #172a42;
@@ -711,7 +682,6 @@ body.dashboard-body {
   margin-top: 4px;
 }
 
-/* Grid: 2 columns on desktop, 1 on mobile */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -726,7 +696,7 @@ body.dashboard-body {
 }
 
 .form-field.form-full {
-  grid-column: 1 / -1;   /* spans both columns */
+  grid-column: 1 / -1;
 }
 
 .form-field label {
@@ -783,7 +753,6 @@ body.dashboard-body {
   margin-top: 4px;
 }
 
-/* Actions bar */
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -829,7 +798,6 @@ body.dashboard-body {
 
 .btn-ghost:hover { color: #172a42; background: #f2f4f7; }
 
-/* Message banner */
 .form-message {
   padding: 14px 20px;
   border-radius: 10px;
@@ -850,7 +818,6 @@ body.dashboard-body {
   border-left: 5px solid #c82828;
 }
 
-/* --- Responsive: 1 column on small screens --- */
 @media (max-width: 720px) {
   .form-grid {
     grid-template-columns: 1fr;
@@ -863,4 +830,219 @@ body.dashboard-body {
   .btn {
     flex: 1 1 100%;
   }
+}
+
+/* =============================================================
+   6. REFERRAL DETAILS PAGE
+   ============================================================= */
+
+.detail-back-link {
+  font-size: 13px;
+  color: #1e5fa5;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.detail-back-link:hover {
+  text-decoration: underline;
+}
+
+.detail-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-title-row h1 {
+  font-size: 22px;
+  color: #172a42;
+}
+
+.detail-card {
+  max-width: 900px;
+  background: #ffffff;
+  border: 1px solid #d6dae0;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 0 0 16px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+}
+
+.detail-field-label {
+  font-size: 12px;
+  color: #6e7680;
+  margin-bottom: 2px;
+}
+
+.detail-field-value {
+  font-size: 14px;
+  color: #172a42;
+  font-weight: bold;
+}
+
+.detail-text {
+  font-size: 14px;
+  color: #172a42;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.detail-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-note {
+  background: #f2f4f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.detail-note-text {
+  font-size: 14px;
+  color: #172a42;
+}
+
+.detail-note-meta {
+  font-size: 11px;
+  color: #6e7680;
+  margin-top: 4px;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.detail-actions .btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.detail-panel {
+  background: #f2f4f7;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-panel label {
+  font-size: 13px;
+  color: #172a42;
+}
+
+.detail-panel select,
+.detail-panel textarea {
+  padding: 10px 12px;
+  border: 1px solid #d6dae0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.detail-panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.detail-timeline {
+  list-style: none;
+  border-left: 2px solid #d6dae0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-timeline-item {
+  position: relative;
+}
+
+.detail-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -25px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1e5fa5;
+}
+
+.detail-timeline-action {
+  font-size: 14px;
+  font-weight: bold;
+  color: #172a42;
+}
+
+.detail-timeline-meta {
+  font-size: 12px;
+  color: #6e7680;
+}
+
+.detail-timeline-comment {
+  font-size: 13px;
+  color: #172a42;
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* =============================================================
+   7. TOAST NOTIFICATIONS
+   ============================================================= */
+
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  min-width: 260px;
+  max-width: 360px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transform: translateX(130%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.toast-show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-hide {
+  transform: translateX(130%);
+  opacity: 0;
+}
+
+.toast-success {
+  background: #1a7f37;
+}
+
+.toast-error {
+  background: #c82828;
 }

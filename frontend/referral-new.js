@@ -14,7 +14,6 @@
 
   // --- Element refs ---
   const $form = document.getElementById("referral-form");
-  const $message = document.getElementById("form-message");
   const $referringOrg = document.getElementById("referringOrg");
   const $referringStaff = document.getElementById("referringStaff");
   const $receivingOrg = document.getElementById("receivingOrg");
@@ -95,6 +94,7 @@
       category: document.getElementById("category").value,
       referringOrganizationId: user.organizationId,
       referringOrganization: user.organizationName,
+      referringStaff: user.name, // FIX: was missing — now saved on the referral
       receivingOrganizationId: receivingOrgId,
       receivingOrganization: receivingOrgObj ? receivingOrgObj.name : "—",
       receivingStaffId: receivingStaffId,
@@ -132,29 +132,24 @@
     return true;
   }
 
-  // --- 6. Message helper ---
+  // --- 6. Message helper — now a toast (see toast.js) instead of a banner ---
   function showMessage(text, kind) {
-    $message.textContent = text;
-    $message.className = "form-message " + (kind || "success");
-    $message.hidden = false;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.showToast(text, kind || "success");
   }
 
   // --- 7. Persist referral (mock — push into MOCK_REFERRALS) ---
   function saveReferral(status) {
-  const referral = collectReferral(status);
+    const referral = collectReferral(status);
 
-  // Read the CURRENT list from localStorage, add the new one, save back.
-  const list = window.MOCK_REFERRALS.data;   // getter → live from localStorage
-  list.push(referral);
-  window.saveReferrals(list);                 // write back
+    const list = window.MOCK_REFERRALS.data;   // getter → live from localStorage
+    list.push(referral);
+    window.saveReferrals(list);                 // write back
 
-  return referral;
-}
+    return referral;
+  }
 
   // --- 8. Handlers ---
 
-  // Save as Draft
   $btnDraft.addEventListener("click", function () {
     if (!validate()) return;
     const r = saveReferral("DRAFT");
@@ -162,7 +157,6 @@
     setTimeout(function () { window.location.href = "referrals.html"; }, 1200);
   });
 
-  // Submit Referral
   $form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!validate()) return;
