@@ -1,5 +1,6 @@
 /* =============================================================
    HudumaLink — Global Stylesheet
+   =============================================================
 
    TABLE OF CONTENTS
    -----------------
@@ -10,15 +11,19 @@
        3.2  Status pills
        3.3  Priority pills
        3.4  Avatar
-       3.5  Messages (form banners)
+       3.5  In-page message banners
+       3.6  Empty state
    4.  Login page
-   5.  Dashboard page (stat cards, recent referrals)
-   6.  Referrals list page (sticky block, tabs, filters, table)
+   5.  Dashboard page
+   6.  Referrals list page
    7.  New Referral form page
-   8.  Referral Details page (two-column layout + sticky actions)
-   9.  Modals & inline panels
-   10. Toast notifications
-   11. Responsive adjustments
+   8.  Referral details page
+   9.  Partners / NGOs page (+ side panel)
+   10. Reports page
+   11. Modals & inline panels
+   12. Toast notifications
+   13. Responsive adjustments (all media queries live here)
+
    ============================================================= */
 
 /* =============================================================
@@ -41,6 +46,7 @@ body {
    2. LAYOUT — DASHBOARD SHELL
    ============================================================= */
 
+/* Page-level: no body scroll — main scrolls internally */
 body.dashboard-body {
   height: 100vh;
   overflow: hidden;
@@ -48,6 +54,7 @@ body.dashboard-body {
   background: #ffffff;
 }
 
+/* --- Sidebar --- */
 .dashboard-sidebar {
   width: 240px;
   background: #132136;
@@ -121,6 +128,7 @@ body.dashboard-body {
   color: #a7b0bf;
 }
 
+/* --- Main scroll container --- */
 .dashboard-main {
   flex: 1;
   padding: 0 40px 40px;
@@ -129,6 +137,7 @@ body.dashboard-body {
   overflow-y: auto;
 }
 
+/* --- Topbar --- */
 .dashboard-topbar {
   background: #ffffff;
   display: flex;
@@ -164,6 +173,7 @@ body.dashboard-body {
   margin-left: auto;
 }
 
+/* Search box in topbar */
 .dashboard-search {
   width: 320px;
   height: 38px;
@@ -185,6 +195,7 @@ body.dashboard-body {
   background: #ffffff;
 }
 
+/* Filter button (also used as <select> on the dashboard) */
 .dashboard-filter {
   height: 38px;
   padding: 0 16px;
@@ -214,9 +225,9 @@ select.dashboard-filter {
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
   padding-right: 30px;
-  cursor: pointer;
 }
 
+/* Bell + notification badge */
 .dashboard-bell {
   position: relative;
   width: 38px;
@@ -276,7 +287,6 @@ select.dashboard-filter {
   background: #1e5fa5;
   color: #ffffff;
 }
-
 .btn-primary:hover { background: #17497f; }
 
 .btn-secondary {
@@ -284,14 +294,12 @@ select.dashboard-filter {
   color: #1e5fa5;
   border: 1px solid #1e5fa5;
 }
-
 .btn-secondary:hover { background: #dfecfa; }
 
 .btn-ghost {
   background: transparent;
   color: #6e7680;
 }
-
 .btn-ghost:hover {
   color: #172a42;
   background: #f2f4f7;
@@ -376,6 +384,7 @@ select.dashboard-filter {
   border-left: 5px solid #c82828;
 }
 
+/* --- 3.6 Empty state --- */
 .ref-empty {
   text-align: center;
   color: #6e7680;
@@ -492,6 +501,7 @@ select.dashboard-filter {
    5. DASHBOARD PAGE
    ============================================================= */
 
+/* Stat cards — 2×2 grid */
 .dashboard-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -524,6 +534,7 @@ select.dashboard-filter {
   margin-top: 4px;
 }
 
+/* Recent referrals list */
 .dashboard-cases h2 {
   font-size: 16px;
   margin-bottom: 12px;
@@ -581,6 +592,7 @@ a.dashboard-case-card:hover {
    6. REFERRALS LIST PAGE
    ============================================================= */
 
+/* Single sticky wrapper holds topbar + tabs + filters + table head */
 .ref-sticky-block {
   position: sticky;
   top: 0;
@@ -589,6 +601,7 @@ a.dashboard-case-card:hover {
   box-shadow: 0 1px 0 #d6dae0;
 }
 
+/* Tabs */
 .ref-tabs {
   background: #ffffff;
   display: flex;
@@ -617,6 +630,7 @@ a.dashboard-case-card:hover {
   border-bottom-color: #1e5fa5;
 }
 
+/* Filter bar */
 .ref-filterbar {
   background: #ffffff;
   display: flex;
@@ -658,6 +672,7 @@ a.dashboard-case-card:hover {
 
 .ref-new-btn:hover { background: #17497f; }
 
+/* Table head + rows (same grid) */
 .ref-table-head,
 .ref-row {
   display: grid;
@@ -730,6 +745,7 @@ a.dashboard-case-card:hover {
   margin-top: 4px;
 }
 
+/* Two-column grid — collapses to 1 on small screens */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -835,6 +851,7 @@ a.dashboard-case-card:hover {
   color: #172a42;
 }
 
+/* Card container */
 .detail-card {
   background: #ffffff;
   border: 1px solid #d6dae0;
@@ -868,6 +885,7 @@ a.dashboard-case-card:hover {
   margin-bottom: 16px;
 }
 
+/* Notes */
 .detail-notes {
   display: flex;
   flex-direction: column;
@@ -891,6 +909,7 @@ a.dashboard-case-card:hover {
   margin-top: 4px;
 }
 
+/* Actions button row */
 .detail-actions {
   display: flex;
   flex-wrap: wrap;
@@ -903,6 +922,7 @@ a.dashboard-case-card:hover {
   cursor: not-allowed;
 }
 
+/* Timeline */
 .detail-timeline {
   list-style: none;
   border-left: 2px solid #d6dae0;
@@ -945,6 +965,7 @@ a.dashboard-case-card:hover {
   font-style: italic;
 }
 
+/* Two-column layout: info on left, actions on right */
 .detail-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -960,6 +981,7 @@ a.dashboard-case-card:hover {
   min-width: 0;
 }
 
+/* Right column (Actions) sticks below the sticky topbar */
 .detail-col-right {
   position: sticky;
   top: 20px;
@@ -967,108 +989,7 @@ a.dashboard-case-card:hover {
 }
 
 /* =============================================================
-   9. MODALS & INLINE PANELS
-   ============================================================= */
-
-.detail-panel {
-  background: #f2f4f7;
-  border-radius: 10px;
-  padding: 16px 18px;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.detail-panel label {
-  font-size: 13px;
-  color: #172a42;
-}
-
-.detail-panel select,
-.detail-panel textarea {
-  padding: 10px 12px;
-  border: 1px solid #d6dae0;
-  border-radius: 8px;
-  font-size: 14px;
-  font-family: inherit;
-}
-
-.detail-panel-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-/* =============================================================
-   10. TOAST NOTIFICATIONS
-   ============================================================= */
-
-#toast-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  pointer-events: none;
-}
-
-.toast {
-  min-width: 260px;
-  max-width: 360px;
-  padding: 14px 18px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  transform: translateX(130%);
-  opacity: 0;
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-.toast-show {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.toast-hide {
-  transform: translateX(130%);
-  opacity: 0;
-}
-
-.toast-success { background: #1a7f37; }
-.toast-error   { background: #c82828; }
-
-/* =============================================================
-   11. RESPONSIVE ADJUSTMENTS
-   ============================================================= */
-
-@media (max-width: 900px) {
-  .detail-layout {
-    grid-template-columns: 1fr;
-  }
-  .detail-col-right {
-    position: static;
-  }
-}
-
-@media (max-width: 720px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-  .form-actions {
-    flex-wrap: wrap;
-  }
-  .form-actions .btn {
-    flex: 1 1 100%;
-  }
-}
-
-/* =============================================================
-   12. PARTNERS / NGOs PAGE
+   9. PARTNERS / NGOs PAGE
    ============================================================= */
 
 /* Summary line under the topbar */
@@ -1078,7 +999,7 @@ a.dashboard-case-card:hover {
   margin: 16px 0 20px;
 }
 
-/* --- Card grid (3 / 2 / 1 responsive) --- */
+/* Card grid (3 / 2 / 1 responsive) */
 .partners-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1086,7 +1007,7 @@ a.dashboard-case-card:hover {
   padding-bottom: 40px;
 }
 
-/* --- Individual card --- */
+/* Individual card */
 .partner-card {
   display: flex;
   flex-direction: column;
@@ -1179,10 +1100,7 @@ a.dashboard-case-card:hover {
   border-radius: 10px;
 }
 
-/* =============================================================
-   SIDE PANEL (slide-in from right)
-   ============================================================= */
-
+/* --- Side panel (slide-in from right) --- */
 .partner-panel-backdrop {
   position: fixed;
   inset: 0;
@@ -1280,7 +1198,7 @@ a.dashboard-case-card:hover {
   margin-top: 0;
 }
 
-/* Staff list */
+/* Staff list inside panel */
 .partner-staff-list {
   list-style: none;
   padding: 0;
@@ -1325,7 +1243,7 @@ a.dashboard-case-card:hover {
   margin-top: 1px;
 }
 
-/* Detail list */
+/* Detail list inside panel */
 .partner-detail-list {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -1348,24 +1266,11 @@ a.dashboard-case-card:hover {
   margin: 0;
 }
 
-/* --- Responsive: partners grid --- */
-@media (max-width: 1100px) {
-  .partners-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 720px) {
-  .partners-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* =============================================================
-   13. REPORTS PAGE
+   10. REPORTS PAGE
    ============================================================= */
 
-/* --- Summary stat row (6 cards, wraps naturally) --- */
+/* Summary stat row (6 cards) */
 .report-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1401,7 +1306,7 @@ a.dashboard-case-card:hover {
   margin-top: 4px;
 }
 
-/* --- Report card container --- */
+/* Report card container */
 .report-card {
   background: #ffffff;
   border: 1px solid #d6dae0;
@@ -1421,7 +1326,7 @@ a.dashboard-case-card:hover {
   border-bottom: 1px solid #eceff3;
 }
 
-/* --- Bar chart --- */
+/* Bar chart */
 .report-chart {
   display: flex;
   flex-direction: column;
@@ -1436,6 +1341,12 @@ a.dashboard-case-card:hover {
   font-size: 13px;
 }
 
+/* Grid children should be allowed to shrink below content size.
+   Without this, the bar column blows out past the value columns. */
+.report-bar-row > * {
+  min-width: 0;
+}
+
 .report-bar-label {
   color: #172a42;
   font-weight: bold;
@@ -1446,6 +1357,8 @@ a.dashboard-case-card:hover {
 }
 
 .report-bar-track {
+  width: 100%;
+  max-width: 100%;
   height: 14px;
   background: #f2f4f7;
   border-radius: 8px;
@@ -1453,6 +1366,7 @@ a.dashboard-case-card:hover {
 }
 
 .report-bar-fill {
+  max-width: 100%;
   height: 100%;
   background: #1e5fa5;
   border-radius: 8px;
@@ -1463,15 +1377,17 @@ a.dashboard-case-card:hover {
   font-weight: bold;
   color: #172a42;
   text-align: right;
+  white-space: nowrap;
 }
 
 .report-bar-share {
   color: #6e7680;
   font-size: 12px;
   text-align: right;
+  white-space: nowrap;
 }
 
-/* --- Recent activity --- */
+/* Recent activity table */
 .report-activity-head,
 .report-activity-row {
   display: grid;
@@ -1512,8 +1428,100 @@ a.dashboard-case-card:hover {
 .report-activity-by     { color: #6e7680; font-size: 12px; }
 .report-activity-when   { color: #6e7680; font-size: 12px; text-align: right; }
 
-/* --- Responsive --- */
+/* =============================================================
+   11. MODALS & INLINE PANELS
+   ============================================================= */
+
+/* Inline action panels on the referral details page */
+.detail-panel {
+  background: #f2f4f7;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-panel label {
+  font-size: 13px;
+  color: #172a42;
+}
+
+.detail-panel select,
+.detail-panel textarea {
+  padding: 10px 12px;
+  border: 1px solid #d6dae0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.detail-panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* =============================================================
+   12. TOAST NOTIFICATIONS
+   ============================================================= */
+
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  min-width: 260px;
+  max-width: 360px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transform: translateX(130%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.toast-show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-hide {
+  transform: translateX(130%);
+  opacity: 0;
+}
+
+.toast-success { background: #1a7f37; }
+.toast-error   { background: #c82828; }
+
+/* =============================================================
+   13. RESPONSIVE ADJUSTMENTS
+   All media queries live here, in one place.
+   ============================================================= */
+
+/* --- Referral details: single column below 900px --- */
 @media (max-width: 900px) {
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* On mobile, sticky no longer needed — everything stacks */
+  .detail-col-right {
+    position: static;
+  }
+
+  /* Reports: 2-column summary + simplified bar chart + simplified activity */
   .report-summary {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1535,6 +1543,33 @@ a.dashboard-case-card:hover {
   }
 }
 
+/* --- Partners grid: 2 columns below 1100px --- */
+@media (max-width: 1100px) {
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Forms and buttons stack below 720px --- */
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-wrap: wrap;
+  }
+
+  .form-actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Reports summary: single column below 600px --- */
 @media (max-width: 600px) {
   .report-summary {
     grid-template-columns: 1fr;
