@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HudumaLink — Reports</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dashboard-body">
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-brand">
+        <span class="dashboard-logo-dot"></span>
+        <span>HudumaLink</span>
+      </div>
+
+      <nav class="dashboard-nav">
+        <a href="dashboard.html" class="dashboard-nav-item">Dashboard</a>
+        <a href="referrals.html" class="dashboard-nav-item">Referrals</a>
+        <a href="referral-new.html" class="dashboard-nav-item">New Referral</a>
+        <a href="partners.html" class="dashboard-nav-item">Partners / NGOs</a>
+        <a href="reports.html" class="dashboard-nav-item active">Reports</a>
+        <a href="#" class="dashboard-nav-item">Settings</a>
+      </nav>
+
+      <div class="dashboard-user">
+        <span class="dashboard-avatar">G</span>
+        <div>
+          <p class="dashboard-user-name">Grace A.</p>
+          <p class="dashboard-user-role">OPM · Case worker</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="ref-sticky-block">
+        <header class="dashboard-topbar">
+          <div class="dashboard-topbar-left">
+            <h1>Reports</h1>
+            <p class="dashboard-subtitle">Referral statistics and activity</p>
+          </div>
+
+          <div class="dashboard-topbar-right">
+            <button class="dashboard-bell" aria-label="Notifications">
+              🔔<span class="dashboard-badge">3</span>
+            </button>
+            <span class="dashboard-avatar small">G</span>
+          </div>
+        </header>
+      </div>
+
+      <!-- Summary stat row -->
+      <section class="report-summary" id="report-summary"></section>
+
+      <!-- By status -->
+      <section class="report-card">
+        <h2 class="report-card-title">Referrals by status</h2>
+        <div class="report-chart" id="chart-status"></div>
+      </section>
+
+      <!-- By priority -->
+      <section class="report-card">
+        <h2 class="report-card-title">Referrals by priority</h2>
+        <div class="report-chart" id="chart-priority"></div>
+      </section>
+
+      <!-- By category -->
+      <section class="report-card">
+        <h2 class="report-card-title">Referrals by category</h2>
+        <div class="report-chart" id="chart-category"></div>
+      </section>
+
+      <!-- By receiving organization -->
+      <section class="report-card">
+        <h2 class="report-card-title">Referrals by receiving organization</h2>
+        <div class="report-chart" id="chart-org"></div>
+      </section>
+
+      <!-- Recent activity -->
+      <section class="report-card">
+        <h2 class="report-card-title">Recent activity</h2>
+        <div class="report-activity-head">
+          <span>REF ID</span>
+          <span>ACTION</span>
+          <span>BY</span>
+          <span>WHEN</span>
+        </div>
+        <div id="report-activity"></div>
+      </section>
+    </main>
+
+    <script src="toast.js"></script>
+    <script src="mock-organizations.js"></script>
+    <script src="mock-referrals.js"></script>
+    <script src="reports.js"></script>
+  </body>
+</html>
