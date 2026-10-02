@@ -1,168 +1,200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HudumaLink — Referral Details</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body class="dashboard-body">
-
-  <aside class="dashboard-sidebar">
-    <div class="dashboard-brand">
-      <span class="dashboard-logo-dot"></span>
-      <span>HudumaLink</span>
-    </div>
-
-    <nav class="dashboard-nav">
-      <a href="dashboard.html" class="dashboard-nav-item">Dashboard</a>
-      <a href="referrals.html" class="dashboard-nav-item active">Referrals</a>
-      <a href="referral-new.html" class="dashboard-nav-item">New Referral</a>
-      <a href="#" class="dashboard-nav-item">Partners / NGOs</a>
-      <a href="#" class="dashboard-nav-item">Reports</a>
-      <a href="#" class="dashboard-nav-item">Settings</a>
-    </nav>
-
-    <div class="dashboard-user">
-      <span class="dashboard-avatar">G</span>
-      <div>
-        <p class="dashboard-user-name">Grace A.</p>
-        <p class="dashboard-user-role">OPM · Case worker</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HudumaLink — Referral Details</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dashboard-body">
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-brand">
+        <span class="dashboard-logo-dot"></span>
+        <span>HudumaLink</span>
       </div>
-    </div>
-  </aside>
 
-  <main class="dashboard-main">
+      <nav class="dashboard-nav">
+        <a href="dashboard.html" class="dashboard-nav-item">Dashboard</a>
+        <a href="referrals.html" class="dashboard-nav-item active">Referrals</a>
+        <a href="referral-new.html" class="dashboard-nav-item">New Referral</a>
+        <a href="partners.html" class="dashboard-nav-item">Partners / NGOs</a>
+        <a href="#" class="dashboard-nav-item">Reports</a>
+        <a href="#" class="dashboard-nav-item">Settings</a>
+      </nav>
+      <div class="dashboard-user">
+        <span class="dashboard-avatar">G</span>
+        <div>
+          <p class="dashboard-user-name">Grace A.</p>
+          <p class="dashboard-user-role">OPM · Case worker</p>
+        </div>
+      </div>
+    </aside>
 
-    <div class="ref-sticky-block">
-      <header class="dashboard-topbar">
-        <div class="dashboard-topbar-left">
-          <a href="referrals.html" class="detail-back-link">&larr; Back to Referrals</a>
-          <div class="detail-title-row">
-            <h1 id="detail-refnumber">REF-...</h1>
-            <span id="detail-status" class="dashboard-status">...</span>
-            <span id="detail-priority" class="ref-priority">...</span>
+    <main class="dashboard-main">
+      <div class="ref-sticky-block">
+        <header class="dashboard-topbar">
+          <div class="dashboard-topbar-left">
+            <a href="referrals.html" class="detail-back-link"
+              >&larr; Back to Referrals</a
+            >
+            <div class="detail-title-row">
+              <h1 id="detail-refnumber">REF-...</h1>
+              <span id="detail-status" class="dashboard-status">...</span>
+              <span id="detail-priority" class="ref-priority">...</span>
+            </div>
           </div>
-        </div>
 
-        <div class="dashboard-topbar-right">
-          <button class="dashboard-bell" aria-label="Notifications">
-            🔔<span class="dashboard-badge">3</span>
-          </button>
-          <span class="dashboard-avatar small">G</span>
-        </div>
-      </header>
-    </div>
-
-    <!-- Success / error message -->
-    <div id="detail-message" class="form-message" hidden></div>
-
-    <!-- Shown if the ?id= in the URL doesn't match any referral -->
-    <p id="detail-notfound" class="ref-empty" hidden>Referral not found.</p>
-
-    <div id="detail-content">
-
-      <!-- ===== Beneficiary Information (SRS §39) ===== -->
-      <section class="detail-card">
-        <h2 class="form-section-title">Beneficiary Information</h2>
-        <div class="detail-grid" id="detail-beneficiary"></div>
-      </section>
-
-      <!-- ===== Referral Information (SRS §39) ===== -->
-      <section class="detail-card">
-        <h2 class="form-section-title">Referral Information</h2>
-        <div class="detail-grid" id="detail-referral-info"></div>
-      </section>
-
-      <!-- ===== Reason (SRS §39) ===== -->
-      <section class="detail-card">
-        <h2 class="form-section-title">Reason</h2>
-        <p id="detail-reason" class="detail-text"></p>
-        <h2 class="form-section-title">Description</h2>
-        <p id="detail-description" class="detail-text"></p>
-      </section>
-
-      <!-- ===== Notes (from the "Add Note" action) ===== -->
-      <section class="detail-card">
-        <h2 class="form-section-title">Notes</h2>
-        <div id="detail-notes" class="detail-notes"></div>
-      </section>
-
-      <!-- ===== Actions (SRS §39: Update Status / Add Note / Assign / Onward Refer / Close) ===== -->
-      <section class="detail-card">
-        <h2 class="form-section-title">Actions</h2>
-
-        <div class="detail-actions">
-          <button class="btn btn-secondary" id="btn-update-status">Update Status</button>
-          <button class="btn btn-secondary" id="btn-add-note">Add Note</button>
-          <button class="btn btn-secondary" id="btn-assign">Assign</button>
-          <button class="btn btn-secondary" id="btn-onward">Onward Refer</button>
-          <button class="btn btn-primary" id="btn-close">Close</button>
-        </div>
-
-        <div id="panel-update-status" class="detail-panel" hidden>
-          <label for="new-status">New status</label>
-          <select id="new-status"></select>
-          <label for="status-comment">Comment</label>
-          <textarea id="status-comment" rows="2" placeholder="Optional comment"></textarea>
-          <div class="detail-panel-actions">
-            <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
-            <button class="btn btn-primary" id="confirm-update-status">Confirm</button>
+          <div class="dashboard-topbar-right">
+            <button class="dashboard-bell" aria-label="Notifications">
+              🔔<span class="dashboard-badge">3</span>
+            </button>
+            <span class="dashboard-avatar small">G</span>
           </div>
+        </header>
+      </div>
+
+      <div id="detail-message" class="form-message" hidden></div>
+      <p id="detail-notfound" class="ref-empty" hidden>Referral not found.</p>
+
+      <!-- ============================================================= -->
+      <!-- TWO-COLUMN LAYOUT                                              -->
+      <!--   Left column:  Info + Reason + Notes + History                -->
+      <!--   Right column: Actions (compact, sticky)                      -->
+      <!--   Collapses to single column below 900px                       -->
+      <!-- ============================================================= -->
+      <div id="detail-content" class="detail-layout">
+        <!-- ================== LEFT COLUMN ================== -->
+        <div class="detail-col detail-col-left">
+          <section class="detail-card">
+            <h2 class="form-section-title">Beneficiary Information</h2>
+            <div class="detail-grid" id="detail-beneficiary"></div>
+          </section>
+
+          <section class="detail-card">
+            <h2 class="form-section-title">Referral Information</h2>
+            <div class="detail-grid" id="detail-referral-info"></div>
+          </section>
+
+          <section class="detail-card">
+            <h2 class="form-section-title">Reason</h2>
+            <p id="detail-reason" class="detail-text"></p>
+            <h2 class="form-section-title">Description</h2>
+            <p id="detail-description" class="detail-text"></p>
+          </section>
+
+          <section class="detail-card">
+            <h2 class="form-section-title">Notes</h2>
+            <div id="detail-notes" class="detail-notes"></div>
+          </section>
+
+          <section class="detail-card">
+            <h2 class="form-section-title">History</h2>
+            <ol class="detail-timeline" id="detail-history"></ol>
+          </section>
         </div>
 
-        <div id="panel-add-note" class="detail-panel" hidden>
-          <label for="note-text">Note</label>
-          <textarea id="note-text" rows="3" placeholder="Add a note about this referral"></textarea>
-          <div class="detail-panel-actions">
-            <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
-            <button class="btn btn-primary" id="confirm-add-note">Add Note</button>
-          </div>
+        <!-- ================== RIGHT COLUMN ================== -->
+        <div class="detail-col detail-col-right">
+          <section class="detail-card">
+            <h2 class="form-section-title">Actions</h2>
+
+            <div class="detail-actions">
+              <button class="btn btn-secondary" id="btn-update-status">
+                Update Status
+              </button>
+              <button class="btn btn-secondary" id="btn-add-note">
+                Add Note
+              </button>
+              <button class="btn btn-secondary" id="btn-assign">Assign</button>
+              <button class="btn btn-secondary" id="btn-onward">
+                Onward Refer
+              </button>
+              <button class="btn btn-primary" id="btn-close">Close</button>
+            </div>
+
+            <div id="panel-update-status" class="detail-panel" hidden>
+              <label for="new-status">New status</label>
+              <select id="new-status"></select>
+              <label for="status-comment">Comment</label>
+              <textarea
+                id="status-comment"
+                rows="2"
+                placeholder="Optional comment"
+              ></textarea>
+              <div class="detail-panel-actions">
+                <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
+                <button class="btn btn-primary" id="confirm-update-status">
+                  Confirm
+                </button>
+              </div>
+            </div>
+
+            <div id="panel-add-note" class="detail-panel" hidden>
+              <label for="note-text">Note</label>
+              <textarea
+                id="note-text"
+                rows="3"
+                placeholder="Add a note about this referral"
+              ></textarea>
+              <div class="detail-panel-actions">
+                <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
+                <button class="btn btn-primary" id="confirm-add-note">
+                  Add Note
+                </button>
+              </div>
+            </div>
+
+            <div id="panel-assign" class="detail-panel" hidden>
+              <label for="assign-staff">Assign to</label>
+              <select id="assign-staff"></select>
+              <div class="detail-panel-actions">
+                <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
+                <button class="btn btn-primary" id="confirm-assign">
+                  Assign
+                </button>
+              </div>
+            </div>
+
+            <div id="panel-onward" class="detail-panel" hidden>
+              <label for="onward-org">Refer onward to</label>
+              <select id="onward-org"></select>
+              <label for="onward-reason">Reason for onward referral</label>
+              <textarea
+                id="onward-reason"
+                rows="2"
+                placeholder="Why this organization is better placed"
+              ></textarea>
+              <div class="detail-panel-actions">
+                <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
+                <button class="btn btn-primary" id="confirm-onward">
+                  Create Onward Referral
+                </button>
+              </div>
+            </div>
+
+            <div id="panel-close" class="detail-panel" hidden>
+              <label for="close-reason">Reason for closing</label>
+              <textarea
+                id="close-reason"
+                rows="2"
+                placeholder="e.g. Required service successfully provided"
+              ></textarea>
+              <div class="detail-panel-actions">
+                <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
+                <button class="btn btn-primary" id="confirm-close">
+                  Close Referral
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
+      </div>
+      <!-- /.detail-layout -->
+    </main>
 
-        <div id="panel-assign" class="detail-panel" hidden>
-          <label for="assign-staff">Assign to</label>
-          <select id="assign-staff"></select>
-          <div class="detail-panel-actions">
-            <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
-            <button class="btn btn-primary" id="confirm-assign">Assign</button>
-          </div>
-        </div>
-
-        <div id="panel-onward" class="detail-panel" hidden>
-          <label for="onward-org">Refer onward to</label>
-          <select id="onward-org"></select>
-          <label for="onward-reason">Reason for onward referral</label>
-          <textarea id="onward-reason" rows="2" placeholder="Why this organization is better placed"></textarea>
-          <div class="detail-panel-actions">
-            <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
-            <button class="btn btn-primary" id="confirm-onward">Create Onward Referral</button>
-          </div>
-        </div>
-
-        <div id="panel-close" class="detail-panel" hidden>
-          <label for="close-reason">Reason for closing</label>
-          <textarea id="close-reason" rows="2" placeholder="e.g. Required service successfully provided"></textarea>
-          <div class="detail-panel-actions">
-            <button class="btn btn-ghost" data-cancel-panel>Cancel</button>
-            <button class="btn btn-primary" id="confirm-close">Close Referral</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== History (SRS §11 — append-only timeline) ===== -->
-      <section class="detail-card">
-        <h2 class="form-section-title">History</h2>
-        <ol class="detail-timeline" id="detail-history"></ol>
-      </section>
-
-    </div><!-- /#detail-content -->
-
-  </main>
-
-  <script src="toast.js"></script>
-  <script src="mock-organizations.js"></script>
-  <script src="mock-referrals.js"></script>
-  <script src="referral-detail.js"></script>
-</body>
+    <script src="toast.js"></script>
+    <script src="mock-organizations.js"></script>
+    <script src="mock-referrals.js"></script>
+    <script src="referral-detail.js"></script>
+  </body>
 </html>
