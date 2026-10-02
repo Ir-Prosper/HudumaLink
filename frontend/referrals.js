@@ -1,6 +1,8 @@
 // =============================================================
 // Referrals list page logic.
 // Reads from window.MOCK_REFERRALS / window.CURRENT_USER.
+// Reads ?search=, ?status=, ?priority=, ?category= from the URL
+// (set by the dashboard's search / filter shortcuts).
 // Later: replace getReferrals() with a real fetch() call.
 // =============================================================
 
@@ -47,6 +49,37 @@
   const $filterCategory = document.getElementById("filter-category");
   const $tabs = document.getElementById("ref-tabs");
 
+  // -------------------------------------------------------------
+  // Read query params from the URL (set by the dashboard's shortcuts)
+  // and pre-fill the state + the matching controls.
+  // -------------------------------------------------------------
+  const urlParams = new URLSearchParams(window.location.search);
+
+  if (urlParams.get("search")) {
+    state.search = urlParams.get("search");
+    if ($search) $search.value = state.search;
+  }
+  if (urlParams.get("status")) {
+    state.status = urlParams.get("status");
+    if ($filterStatus) $filterStatus.value = state.status;
+  }
+  if (urlParams.get("priority")) {
+    state.priority = urlParams.get("priority");
+    if ($filterPriority) $filterPriority.value = state.priority;
+  }
+  if (urlParams.get("category")) {
+    state.category = urlParams.get("category");
+    if ($filterCategory) $filterCategory.value = state.category;
+  }
+  if (urlParams.get("tab")) {
+    state.tab = urlParams.get("tab");
+    if ($tabs) {
+      Array.prototype.forEach.call($tabs.children, function (b) {
+        b.classList.toggle("active", b.dataset.tab === state.tab);
+      });
+    }
+  }
+
   function formatDate(iso) {
     if (!iso) return "—";
     const d = new Date(iso);
@@ -76,7 +109,9 @@
 
       if (state.search) {
         const q = state.search.toLowerCase();
-        if (!r.referralNumber.toLowerCase().includes(q)) return false;
+        const num = (r.referralNumber || "").toLowerCase();
+        const ben = (r.beneficiaryReference || "").toLowerCase();
+        if (!num.includes(q) && !ben.includes(q)) return false;
       }
       return true;
     });
