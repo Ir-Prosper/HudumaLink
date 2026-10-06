@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HudumaLink — Settings</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
   <body class="dashboard-body">
     <aside class="dashboard-sidebar">
       <div class="dashboard-brand">
-        <span class="dashboard-logo-dot"></span>
+        <span class="dashboard-logo-mark"><svg viewBox="0 0 100 100" width="22" height="22" fill="none" aria-hidden="true">
+            <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="7"/>
+            <line x1="30" y1="36" x2="70" y2="36" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <line x1="30" y1="36" x2="50" y2="70" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <line x1="70" y1="36" x2="50" y2="70" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="30" cy="36" r="8" fill="currentColor"/>
+            <circle cx="70" cy="36" r="8" fill="currentColor"/>
+            <circle cx="50" cy="70" r="8" fill="currentColor"/>
+            <circle cx="50" cy="49" r="5" stroke="currentColor" stroke-width="3.5"/>
+          </svg></span>
         <span>HudumaLink</span>
       </div>
 
@@ -23,11 +33,12 @@
       </nav>
 
       <div class="dashboard-user">
-        <span class="dashboard-avatar">G</span>
+        <span class="dashboard-avatar" id="sidebar-user-avatar">G</span>
         <div>
-          <p class="dashboard-user-name">Grace A.</p>
-          <p class="dashboard-user-role">OPM · Case worker</p>
+          <p class="dashboard-user-name" id="sidebar-user-name">Grace A.</p>
+          <p class="dashboard-user-role" id="sidebar-user-role">OPM · Case worker</p>
         </div>
+        <button type="button" id="btn-logout" class="sidebar-logout-btn" title="Log out">⎋</button>
       </div>
     </aside>
 
@@ -43,7 +54,7 @@
             <button class="dashboard-bell" aria-label="Notifications">
               🔔<span class="dashboard-badge">3</span>
             </button>
-            <span class="dashboard-avatar small">G</span>
+            <span class="dashboard-avatar small" id="topbar-user-avatar">G</span>
           </div>
         </header>
       </div>
@@ -164,6 +175,7 @@
       </section>
     </main>
 
+    <script src="auth.js"></script>
     <script src="toast.js"></script>
     <script src="mock-organizations.js"></script>
     <script src="mock-referrals.js"></script>

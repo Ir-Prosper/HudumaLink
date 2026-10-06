@@ -100,8 +100,12 @@
 
     document.getElementById("profile-avatar").textContent = initials(user.name);
     document.getElementById("profile-name").textContent = user.name;
+    // FIX: use the real demo-account email (set at login, carried on
+    // CURRENT_USER) instead of a fabricated one — previously this was
+    // hardcoded to "...@opm.gov.ug" no matter which organization the
+    // logged-in user actually belonged to.
     document.getElementById("profile-email").textContent =
-      user.name.toLowerCase().replace(/\s+/g, ".") + "@opm.gov.ug";
+      user.email || (user.name.toLowerCase().replace(/\s+/g, ".") + "@example.org");
     document.getElementById("profile-role").textContent =
       ROLE_LABELS[user.role] || user.role;
     document.getElementById("profile-org").textContent = user.organizationName;

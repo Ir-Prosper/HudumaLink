@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HudumaLink — Login</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
   <body class="login-body">
     <div class="login-card">
-      <div class="logo-circle">RMS</div>
+      <div class="logo-circle" role="img" aria-label="HudumaLink logo"><svg viewBox="0 0 100 100" width="30" height="30" fill="none" aria-hidden="true">
+            <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="7"/>
+            <line x1="30" y1="36" x2="70" y2="36" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <line x1="30" y1="36" x2="50" y2="70" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <line x1="70" y1="36" x2="50" y2="70" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="30" cy="36" r="8" fill="currentColor"/>
+            <circle cx="70" cy="36" r="8" fill="currentColor"/>
+            <circle cx="50" cy="70" r="8" fill="currentColor"/>
+            <circle cx="50" cy="49" r="5" stroke="currentColor" stroke-width="3.5"/>
+          </svg></div>
       <h1>HudumaLink</h1>
       <p class="subtitle">Referral management system</p>
 
-      <form>
+      <form id="login-form">
         <label for="email">Work email</label>
         <input
           type="email"
@@ -23,13 +33,22 @@
         />
 
         <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+          <button
+            type="button"
+            id="password-toggle"
+            class="password-toggle"
+            aria-label="Show password"
+            aria-pressed="false"
+          >👁</button>
+        </div>
 
         <button type="submit">Log in</button>
       </form>
@@ -41,5 +60,9 @@
         <p>OPM · UNHCR · Partner NGOs</p>
       </div>
     </div>
+
+    <script src="mock-users.js"></script>
+    <script src="toast.js"></script>
+    <script src="login.js"></script>
   </body>
 </html>

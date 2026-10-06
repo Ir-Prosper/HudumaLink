@@ -78,12 +78,14 @@ body.dashboard-body {
   margin-bottom: 30px;
 }
 
-.dashboard-logo-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  display: inline-block;
+/* Sidebar brand mark — the "linked nodes in a circle" SVG icon.
+   It inherits white from .dashboard-sidebar's text color via
+   currentColor, so no color rule is needed here. */
+.dashboard-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .dashboard-nav {
@@ -127,6 +129,29 @@ body.dashboard-body {
 .dashboard-user-role {
   font-size: 11px;
   color: #a7b0bf;
+}
+
+/* Logout button — sits at the end of the sidebar user block */
+.sidebar-logout-btn {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: #c7ccd4;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-logout-btn:hover {
+  background: #1c2d47;
+  color: #ffffff;
 }
 
 /* --- Main scroll container --- */
@@ -455,6 +480,42 @@ select.dashboard-filter {
   border: 1px solid #d6dae0;
   border-radius: 8px;
   font-size: 14px;
+}
+
+/* Password field + eye toggle */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 42px; /* room for the toggle button */
+}
+
+/* Overrides .login-card button (width/margin/background) via higher
+   specificity — without this the toggle would render as a full-width
+   blue submit-style button instead of a small icon. */
+.login-card .password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card .password-toggle:hover {
+  background: #f2f4f7;
 }
 
 .login-card button {

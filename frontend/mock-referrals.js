@@ -14,9 +14,13 @@
 // When Matson's backend is ready, delete this file and use fetch().
 // =============================================================
 
-window.CURRENT_USER = {
+// Whoever just logged in (from login.js) becomes CURRENT_USER.
+// Falls back to Grace A./OPM if someone opens a page directly
+// without logging in first (e.g. testing a single page).
+window.CURRENT_USER = JSON.parse(localStorage.getItem("hudumalink_logged_in_user")) || {
   id: 1,
   name: "Grace A.",
+  email: "grace@opm.gov.ug",
   role: "CASE_WORKER",
   organizationId: 1,
   organizationName: "OPM"
