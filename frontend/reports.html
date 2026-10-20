@@ -62,25 +62,27 @@
       <!-- Summary stat row -->
       <section class="report-summary" id="report-summary"></section>
 
-      <!-- By status -->
+      <!-- By status — ranked horizontal bar list, full width (10 labels) -->
       <section class="report-card">
         <h2 class="report-card-title">Referrals by status</h2>
         <div class="report-chart" id="chart-status"></div>
       </section>
 
-      <!-- By priority -->
-      <section class="report-card">
-        <h2 class="report-card-title">Referrals by priority</h2>
-        <div class="report-chart" id="chart-priority"></div>
-      </section>
+      <!-- Priority (donut) and Category (lollipop) side by side —
+           both compact, part-of-whole style charts -->
+      <div class="report-chart-grid">
+        <section class="report-card">
+          <h2 class="report-card-title">Referrals by priority</h2>
+          <div class="report-chart" id="chart-priority"></div>
+        </section>
 
-      <!-- By category -->
-      <section class="report-card">
-        <h2 class="report-card-title">Referrals by category</h2>
-        <div class="report-chart" id="chart-category"></div>
-      </section>
+        <section class="report-card">
+          <h2 class="report-card-title">Referrals by category</h2>
+          <div class="report-chart" id="chart-category"></div>
+        </section>
+      </div>
 
-      <!-- By receiving organization -->
+      <!-- By receiving organization — vertical columns, full width -->
       <section class="report-card">
         <h2 class="report-card-title">Referrals by receiving organization</h2>
         <div class="report-chart" id="chart-org"></div>
